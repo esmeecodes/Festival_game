@@ -1,30 +1,16 @@
-class Player {
+class Player extends Component {
   constructor(gameScreen, top, left, width, height, imgSrc) {
-    this.gameScreen = gameScreen;
-    this.left = left;
-    this.top = top;
-    this.width = width;
-    this.height = height;
+    super(gameScreen, top, left, width, height, imgSrc);
+
     this.directionX = 0;
     this.directionY = 0;
-    this.element = document.createElement("img");
-    this.element.src = imgSrc;
-    this.element.style.position = "absolute";
-
-    // Set up the default element's property values
-    this.element.style.width = `${width}px`;
-    this.element.style.height = `${height}px`;
-    this.element.style.left = `${left}px`;
-    this.element.style.top = `${top}px`;
-
-    this.gameScreen.appendChild(this.element);
   }
 
   move() {
     this.left += this.directionX;
     this.top += this.directionY;
 
-    // Ensure the player's car stays within the game screen
+    // Ensure the player stays within the game screen
     // handles left hand side
     if (this.left < 10) {
       this.left = 10;
@@ -52,17 +38,34 @@ class Player {
     this.element.style.top = this.top + "px";
   }
 
-  didCollide(obstacle) {
-    const playerCar = this.element.getBoundingClientRect();
-    const obstacleCar = obstacle.element.getBoundingClientRect();
+  didCollide(something) {
+    const playerIcon = this.element.getBoundingClientRect();
+    const obstacle = something.element.getBoundingClientRect();
+
+    let xCorrection = 0,
+      yCorrection = 0;
 
     if (
-      playerCar.left < obstacleCar.right &&
-      playerCar.right > obstacleCar.left &&
-      playerCar.top < obstacleCar.bottom &&
-      playerCar.bottom > obstacleCar.top
+      playerIcon.left < obstacle.right &&
+      playerIcon.right > obstacle.left &&
+      playerIcon.top < obstacle.bottom &&
+      playerIcon.bottom > obstacle.top
     ) {
-      return true;
+      const overlapX = Math.min(
+        playerIcon.right - obstacle.left,
+        obstacle.right - playerIcon.left
+      );
+      const overlapY = Math.min(
+        playerIcon.bottom - obstacle.top,
+        obstacle.bottom - playerIcon.top
+      );
+
+      if (overlapX < overlapY) {
+        xCorrection = playerIcon.left < obstacle.left ? -overlapX : overlapX;
+      } else {
+        yCorrection = playerIcon.top < obstacle.top ? -overlapY : overlapY;
+      }
+      return { collided: true, xCorrection, yCorrection };
     } else {
       return false;
     }

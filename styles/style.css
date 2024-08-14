@@ -9,31 +9,42 @@ body {
 
 #game-container {
   display: flex;
-  width: 100vw;
-  padding: 20px 0px;
+  flex-direction: column;
+  padding: 20px 20px;
   justify-content: center;
+  border: 5px solid black;
+}
+
+#color-overlay {
+  position: relative;
+  z-index: 1;
+  opacity: 0.5;
+  background-color: #000;
+  width: 100%;
+  height: 100%;
 }
 
 #game-screen {
   display: none;
   align-content: center;
-  padding: 20px 0px;
+  padding: 5px 5px;
   overflow: hidden;
   position: relative;
-  background-image: url(../images/road.png);
+  border: 1px solid black;
+  background-image: url(../images/bckgrnd.jpg);
   background-size: cover;
-  animation: slide 5s linear infinite;
+  /*animation: slide 10s linear infinite; */
 }
 
 @keyframes slide {
   0% {
-    background-position: 0 -1000px;
+    background-position: -500px 0;
   }
   95% {
     background-position: 0 0;
   }
   100% {
-    background-position: 0 50px;
+    background-position: 50px 0;
   }
 }
 
@@ -63,4 +74,10 @@ body button {
   box-shadow: 0;
   border-radius: 5px;
   margin-bottom: 20px;
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 }

@@ -5,13 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./styles/style.css" />
-    <title>Island Racer</title>
+    <title>Links Vorne</title>
   </head>
   <body>
     <main>
       <!-- #game-intro is initially shown on the game start screen -->
       <div id="game-intro">
-        <img src="./images/logo.png" alt="" class="logo-img" />
+        You're at your all-time favorite festival, the Fusion Festival in Lärz.
+        The sun is shining, the beats are pumping, and you're heading to the
+        Sonnendeck Stage to catch Kaufmann's insane set. After a quick loo
+        visit, you're eager to return to your friends, who are already lost in
+        the music. You can already picture it: dancing like there's no tomorrow,
+        feeling the magic in the air, and sharing those unforgettable moments
+        with your closest friends. But now comes the ultimate festival
+        challenge: finding your way back to them. The day is in full swing, and
+        the festival grounds are packed with people. On your journey, you'll
+        face the "good and the bad" of festival life, obstacles that might
+        confuse or slow you down. Will you make it back to the front left, or
+        will the festival's chaos get the better of you?
+
         <br />
         <button id="start-button">Start Game</button>
         <p>Use the left and right arrow to control the car!</p>
@@ -19,27 +31,32 @@
       </div>
 
       <div id="game-container">
-        <div>
+        <div class="stats">
           <h2>Stats</h2>
           <p>Score: <span id="score">0</span></p>
           <p>Lives: <span id="lives">3</span></p>
         </div>
         <!-- #game-screen is initially hidden using CSS style display: none -->
-        <div id="game-screen"></div>
+        <div id="game-screen">
+          <div id="color-overlay"></div>
+        </div>
       </div>
 
       <!-- #game-end is initially hidden using CSS style display: none -->
       <div id="game-end">
-        <img src="./images/logo.png" alt="" class="logo-img" />
+        <!-- <img src="./images/logo.png" alt="" class="logo-img" /> -->
         <h1>Game Over</h1>
         <br />
         <button id="restart-button">Restart</button>
       </div>
     </main>
 
-    <script type="text/javascript" src="js/game.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/component.js"></script>
     <script type="text/javascript" src="js/player.js"></script>
-    <script type="text/javascript" src="js/obstacle.js"></script>
+    <script type="text/javascript" src="js/unhealthy.js"></script>
+    <script type="text/javascript" src="js/healthy.js"></script>
+    <script type="text/javascript" src="js/human.js"></script>
+    <script type="text/javascript" src="js/game.js"></script>
   </body>
 </html>

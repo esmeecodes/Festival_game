@@ -6,14 +6,17 @@ class Game {
     this.player = new Player(
       this.gameScreen,
       500,
-      200,
-      100,
-      150,
-      "./images/car.png"
+      180,
+      130,
+      120,
+      "./images/player.png"
     );
-    this.height = 600;
-    this.width = 500;
-    this.obstacles = [];
+    this.height = 800;
+    this.width = 1200;
+    this.unhealthyItems = [];
+    this.healthyItems = [];
+    this.humans = [];
+    this.maxHumans = 10;
     this.score = 0;
     this.lives = 3;
     this.gameIsOver = false;
@@ -48,23 +51,53 @@ class Game {
     this.player.move();
 
     // move obstacles
-    this.obstacles.map((obstacle) => {
-      obstacle.move();
+    this.unhealthyItems.map((unhealthy) => {
+      unhealthy.move();
 
       // check for collision
-      if (this.player.didCollide(obstacle)) {
+      if (this.player.didCollide(unhealthy)) {
         // remove the obstacle from the array
-        const index = this.obstacles.indexOf(obstacle);
-        this.obstacles.splice(index, 1);
-        obstacle.element.remove();
+        console.log("collision with unhealthy item");
+        const index = this.unhealthyItems.indexOf(unhealthy);
+        this.unhealthyItems.splice(index, 1);
+        unhealthy.element.remove();
 
         this.lives--;
         console.log(`lives: ${this.lives}`);
-      } else if (obstacle.top > this.height) {
-        const index = this.obstacles.indexOf(obstacle);
-        this.obstacles.splice(index, 1);
-        obstacle.element.remove();
+        let lives = document.getElementById("lives");
+        lives.innerHTML = `${this.lives}`;
+      } else if (unhealthy.left > this.width) {
+        const index = this.unhealthyItems.indexOf(unhealthy);
+        this.unhealthyItems.splice(index, 1);
+        unhealthy.element.remove();
         this.score++;
+        let score = document.getElementById("score");
+        score.innerHTML = `${this.score}`;
+      }
+    });
+
+    this.healthyItems.map((healthy) => {
+      healthy.move();
+
+      if (this.player.didCollide(healthy)) {
+        console.log("collision with healthy item");
+        const index = this.healthyItems.indexOf(healthy);
+        this.healthyItems.splice(index, 1);
+        healthy.element.remove();
+        this.lives++;
+        let lives = document.getElementById("lives");
+        lives.innerHTML = `${this.lives}`;
+      }
+    });
+
+    this.humans.map((human) => {
+      human.move();
+      const collision = this.player.didCollide(human);
+      if (collision.collided) {
+        console.log("collision with human");
+        this.player.left += collision.xCorrection;
+        this.player.top += collision.yCorrection;
+        this.player.updatePosition;
       }
     });
 
@@ -72,17 +105,42 @@ class Game {
       this.endGame();
     }
 
-    // create obstacles
-    if (Math.random() > 0.99 && this.obstacles.length < 1) {
+    // create obstacles & visitors
+    if (Math.random() > 0.99 && this.unhealthyItems.length < 1) {
       console.log("new obstacle");
-      this.obstacles.push(new Obstacle(this.gameScreen));
+      this.unhealthyItems.push(new Unhealthy(this.gameScreen));
     }
+
+    if (Math.random() > 0.99 && this.lives < 3) {
+      console.log("new healthy item");
+      this.healthyItems.push(new Healthy(this.gameScreen));
+    }
+
+    if (this.humans.length < this.maxHumans && Math.random() > 0.99) {
+      this.placeHumanRandomly(50, 50);
+    }
+  }
+
+  addHuman(human) {
+    this.humans.push(human);
+  }
+
+  placeHumanRandomly(width, height) {
+    let left, top, human;
+    do {
+      left = Math.floor(Math.random() * (this.width - width - 40));
+      top = Math.floor(Math.random() * (this.height - height - 40));
+      human = new Human(this, this.gameScreen, left, top, width, height);
+    } while (human.isOverlappingAny());
+
+    // If there is no overlap, add the human to the game
+    this.addHuman(human);
   }
 
   endGame() {
     this.player.element.remove();
-    this.obstacles.map((obstacle) => {
-      obstacle.element.remove();
+    this.unhealthyItems.map((unhealthy) => {
+      unhealthy.element.remove();
     });
     this.gameIsOver = true;
     this.gameScreen.style.display = "none";

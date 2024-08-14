@@ -2,24 +2,34 @@ window.onload = function () {
   const startButton = document.getElementById("start-button");
   const restartButton = document.getElementById("restart-button");
   let game; // we need to declare this variable here so we can access it later
+  const audio = new Audio("src/KaufmannFusionFestival_2023.mp3");
+  audio.play();
 
   startButton.addEventListener("click", function () {
     startGame();
   });
 
+  restartButton.addEventListener("click", function () {
+    restartGame();
+  });
+
+  function restartGame() {
+    location.reload();
+  }
+
   const keydownHandler = function (event) {
     event.preventDefault();
     if (event.key === "ArrowLeft") {
-      game.player.directionX = -1;
+      game.player.directionX = -2;
     }
     if (event.key === "ArrowRight") {
-      game.player.directionX = 1;
+      game.player.directionX = 2;
     }
     if (event.key === "ArrowUp") {
-      game.player.directionY = -1;
+      game.player.directionY = -2;
     }
     if (event.key === "ArrowDown") {
-      game.player.directionY = 1;
+      game.player.directionY = 2;
     }
   };
 
@@ -38,4 +48,21 @@ window.onload = function () {
     game = new Game();
     game.start();
   }
+
+  function generateRandomColor() {
+    return "#" + Math.floor(Math.random() * 16777215).toString(16);
+  }
+
+  // Changes the color of the background using STYLE
+  function changeBackgroundColor() {
+    var colorBg = document.getElementById("color-overlay");
+    colorBg.style.background = generateRandomColor();
+  }
+
+  function changeBackground() {
+    changeBackgroundColor();
+  }
+
+  // Run this function every 300ms
+  setInterval(changeBackground, 100);
 };
