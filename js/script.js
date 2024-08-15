@@ -2,7 +2,7 @@ window.onload = function () {
   const startButton = document.getElementById("start-button");
   const restartButton = document.getElementById("restart-button");
   let game; // we need to declare this variable here so we can access it later
-  const audio = new Audio("src/KaufmannFusionFestival_2023.mp3");
+  const audio = new Audio("src/Kaufmann.mp3");
   audio.play();
 
   startButton.addEventListener("click", function () {

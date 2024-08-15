@@ -2,6 +2,7 @@ class Game {
   constructor() {
     this.startScreen = document.getElementById("game-intro");
     this.gameScreen = document.getElementById("game-screen");
+    this.statsDisplay = document.getElementsByClassName("stats")[0];
     this.gameEndScreen = document.getElementById("game-end");
     this.player = new Player(
       this.gameScreen,
@@ -32,6 +33,7 @@ class Game {
     // change the visibility of the start screen
     this.startScreen.style.display = "none";
     this.gameScreen.style.display = "block";
+    this.statsDisplay.style.display = "flex";
 
     this.gameIntervalId = setInterval(() => {
       this.gameLoop();
