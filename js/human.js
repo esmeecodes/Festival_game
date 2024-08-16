@@ -1,6 +1,6 @@
 class Human extends Component {
   constructor(game, gameScreen, left, top, width, height) {
-    super(gameScreen, left, top, width, height, "./images/pill.png");
+    super(gameScreen, left, top, width, height, "./images/h1.png");
 
     this.game = game;
 

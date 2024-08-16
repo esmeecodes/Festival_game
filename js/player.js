@@ -33,6 +33,14 @@ class Player extends Component {
     this.updatePosition();
   }
 
+  flipSprite(flipped) {
+    if (flipped) {
+      this.element.src = "./images/player-right.png";
+    } else {
+      this.element.src = "./images/player-left.png";
+    }
+  }
+
   updatePosition() {
     this.element.style.left = this.left + "px";
     this.element.style.top = this.top + "px";

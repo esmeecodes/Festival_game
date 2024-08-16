@@ -4,7 +4,9 @@ body {
 }
 
 #game-intro {
-  padding: 20px 0px;
+  padding: 20px 20px;
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
 }
 
 #game-container {
@@ -29,7 +31,7 @@ body {
   padding: 5px 5px;
   overflow: hidden;
   position: relative;
-  border: 1px solid black;
+  z-index: 0;
   background-image: url(../images/bckgrnd.jpg);
   background-size: cover;
   /*animation: slide 10s linear infinite; */
@@ -49,11 +51,6 @@ body {
 
 #game-end {
   display: none;
-}
-
-.game-intro p {
-  font-size: 18px;
-  font-family: "Verdana";
 }
 
 .logo-img {
@@ -85,8 +82,27 @@ body button {
   margin-bottom: 20px;
 }
 
+#stats-title {
+  max-width: 200px;
+}
 .stats {
   display: none;
   flex-direction: column;
-  text-align: left;
+  align-items: center;
+  z-index: 1;
+  padding: 20px 20px;
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+}
+
+stats p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#score,
+#lives {
+  font-weight: bold;
+  font-size: 30px;
 }

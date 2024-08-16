@@ -10,10 +10,10 @@ class Game {
       180,
       130,
       120,
-      "./images/player.png"
+      "./images/player-left.png"
     );
-    this.height = 800;
-    this.width = 1200;
+    this.height = 1080;
+    this.width = 1820;
     this.unhealthyItems = [];
     this.healthyItems = [];
     this.humans = [];
@@ -119,7 +119,7 @@ class Game {
     }
 
     if (this.humans.length < this.maxHumans && Math.random() > 0.99) {
-      this.placeHumanRandomly(50, 50);
+      this.placeHumanRandomly(50, 92);
     }
   }
 
