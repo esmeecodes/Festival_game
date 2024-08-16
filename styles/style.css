@@ -118,3 +118,7 @@ stats p {
 #essentials {
   font-weight: bold;
 }
+
+#game-title {
+  margin-bottom: 20px;
+}
