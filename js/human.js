@@ -1,6 +1,11 @@
 class Human extends Component {
   constructor(game, gameScreen, left, top, width, height) {
-    super(gameScreen, left, top, width, height, "./images/h1.png");
+    const humanImages = ["h1", "h2", "h3", "h4", "h5", "h6"];
+
+    const randomLook =
+      humanImages[Math.floor(Math.random() * humanImages.length)];
+
+    super(gameScreen, left, top, width, height, `./images/${randomLook}.png`);
 
     this.game = game;
 

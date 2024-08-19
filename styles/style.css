@@ -122,3 +122,16 @@ stats p {
 #game-title {
   margin-bottom: 20px;
 }
+
+#introduction-title {
+  font-weight: bold;
+  font-size: 24px;
+  margin: 20px 0 10px 0;
+  display: block;
+}
+
+#big-question {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}

@@ -119,6 +119,7 @@ class Game {
     }
 
     if (this.humans.length < this.maxHumans && Math.random() > 0.99) {
+      const humanTypes = ["h1", "h2", "h3", "h4", "h5", "h6", "h7"];
       this.placeHumanRandomly(50, 92);
     }
   }
