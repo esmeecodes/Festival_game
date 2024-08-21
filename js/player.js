@@ -4,11 +4,22 @@ class Player extends Component {
     this.game = game;
     this.directionX = 0;
     this.directionY = 0;
+    this.isDrunk = false;
+    this.isTripping = false;
+    this.isHigh = false;
   }
 
   move() {
-    this.left += this.directionX;
-    this.top += this.directionY;
+    const negativeEffect = this.isDrunk
+      ? -1
+      : this.isTripping
+      ? 0.5
+      : this.isHigh
+      ? 4
+      : 1;
+
+    this.left += this.directionX * negativeEffect;
+    this.top += this.directionY * negativeEffect;
 
     // Ensure the player stays within the game screen
     // handles left hand side
@@ -31,6 +42,19 @@ class Player extends Component {
     }
 
     this.updatePosition();
+  }
+
+  resetEffects() {
+    this.isDrunk = false;
+    this.isTripping = false;
+    this.isHigh = false;
+    this.flipSprite(false);
+  }
+
+  trippingPlayer() {
+    if ((this.isTripping = true)) {
+      this.element.style.transform = "scale(0.5)";
+    }
   }
 
   flipSprite(flipped) {

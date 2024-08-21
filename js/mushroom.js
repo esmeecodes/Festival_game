@@ -9,8 +9,8 @@ class Mushroom extends Unhealthy {
   }
 
   applyEffect(player) {
-    if (player.didCollide(this)) {
-      console.log("collision with mushroom");
-    }
+    console.log("collision with mushroom, player is tripping");
+    player.isTripping = true;
+    player.trippingPlayer();
   }
 }

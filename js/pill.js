@@ -9,8 +9,7 @@ class Pill extends Unhealthy {
   }
 
   applyEffect(player) {
-    if (player.didCollide(this)) {
-      console.log("collision with pill");
-    }
+    player.isHigh = true;
+    console.log("collision with pill, player is high");
   }
 }

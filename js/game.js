@@ -73,7 +73,7 @@ class Game {
       // check for collision
       if (this.player.didCollide(unhealthy)) {
         // remove the obstacle from the array
-        console.log(`collision with ${unhealthy.type}`);
+        // console.log(`collision with ${unhealthy.type}`);
         const index = this.unhealthyItems.indexOf(unhealthy);
         this.unhealthyItems.splice(index, 1);
         unhealthy.element.remove();
@@ -101,6 +101,7 @@ class Game {
         this.healthyItems.splice(index, 1);
         healthy.element.remove();
         this.lives++;
+        this.player.resetEffects();
         let lives = document.getElementById("lives");
         lives.innerHTML = `${this.lives}`;
       }

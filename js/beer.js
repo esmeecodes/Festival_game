@@ -9,8 +9,7 @@ class Beer extends Unhealthy {
   }
 
   applyEffect(player) {
-    if (player.didCollide(this)) {
-      console.log("collision with beer");
-    }
+    console.log("collision with beer, player is drunk");
+    player.isDrunk = true;
   }
 }
