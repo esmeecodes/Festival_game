@@ -4,6 +4,14 @@ body {
   justify-content: center;
 }
 
+h1 {
+  font-family: "Roboto", sans-serif;
+  font-size: 36px;
+  font-weight: bold;
+  margin: 20px 0;
+  text-align: center;
+}
+
 #game-intro {
   padding: 20px 20px;
   font-size: 18px;
@@ -18,9 +26,8 @@ body {
 
 #game-container {
   display: flex;
-  flex-direction: column;
-  padding: 20px 20px;
-  justify-content: center;
+  padding: 0;
+  justify-content: space-between;
 }
 
 #color-overlay {
@@ -35,26 +42,13 @@ body {
 #game-screen {
   display: none;
   align-content: center;
-  padding: 5px 5px;
+  padding: 0;
   overflow: hidden;
   position: relative;
   z-index: 0;
-  background-image: url(../images/bckgrnd.jpg);
+  background-image: url(../images/back.png);
   background-size: cover;
-  /*animation: slide 10s linear infinite; */
 }
-/* 
-@keyframes slide {
-  0% {
-    background-position: -500px 0;
-  }
-  95% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 50px 0;
-  }
-} */
 
 #game-end {
   display: none;
@@ -77,35 +71,28 @@ body {
 #restart-button {
   max-width: 230px;
   margin: 20px;
-}
-
-body button {
-  font-size: 30px;
-  background-color: #870007;
-  color: #fff;
-  padding: 20px 40px;
-  border: 0;
-  box-shadow: 0;
-  border-radius: 5px;
-  margin-bottom: 20px;
+  display: block;
 }
 
 #stats-title {
   max-width: 200px;
 }
+
 .stats {
   display: none;
   flex-direction: column;
-  align-items: center;
-  z-index: 1;
-  padding: 20px 20px;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px 15px 0 0px;
   font-size: 18px;
   font-family: "Roboto", sans-serif;
+  background-color: #fff;
+  width: 200px;
 }
 
 stats p {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 }
 

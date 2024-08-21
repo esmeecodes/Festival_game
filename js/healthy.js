@@ -1,18 +1,22 @@
 class Healthy extends Component {
   constructor(gameScreen) {
+    const healthyItems = [
+      "tent-pixel",
+      "glitzerstation",
+      "glasswater",
+      "fruits",
+    ];
+
+    const randomHealthyItem =
+      healthyItems[Math.floor(Math.random() * healthyItems.length)];
+
     super(
       gameScreen,
-      0,
-      Math.floor(Math.random() * 300 + 70),
-      60,
-      60,
-      "./images/fruits.png"
+      Math.floor(Math.random() * 1000 + 70),
+      Math.floor(Math.random() * 1000 + 70),
+      80,
+      80,
+      `./images/${randomHealthyItem}.png`
     );
-  }
-
-  move() {
-    this.left += 3;
-    // console.log(`Moving healty to right: ${this.left}`);
-    this.updatePosition();
   }
 }

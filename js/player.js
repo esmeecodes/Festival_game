@@ -1,7 +1,7 @@
 class Player extends Component {
-  constructor(gameScreen, top, left, width, height, imgSrc) {
+  constructor(game, gameScreen, top, left, width, height, imgSrc) {
     super(gameScreen, top, left, width, height, imgSrc);
-
+    this.game = game;
     this.directionX = 0;
     this.directionY = 0;
   }
@@ -23,7 +23,7 @@ class Player extends Component {
 
     // handles top
     if (this.left > this.gameScreen.offsetWidth - this.width - 10) {
-      this.left = this.gameScreen.offsetWidth - this.width - 10;
+      this.game.closedIn();
     }
 
     if (this.top > this.gameScreen.offsetHeight - this.height - 10) {

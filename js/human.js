@@ -1,6 +1,6 @@
 class Human extends Component {
   constructor(game, gameScreen, left, top, width, height) {
-    const humanImages = ["h1", "h2", "h3", "h4", "h5", "h6"];
+    const humanImages = ["h1", "h2", "h3", "h4", "h5"];
 
     const randomLook =
       humanImages[Math.floor(Math.random() * humanImages.length)];
@@ -24,7 +24,7 @@ class Human extends Component {
     );
   }
   move() {
-    this.left += 0.2;
+    this.left += 4;
     // console.log(`Moving unhealthy to right: ${this.left}`);
     this.updatePosition();
   }

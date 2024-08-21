@@ -5,24 +5,37 @@ class Game {
     this.statsDisplay = document.getElementsByClassName("stats")[0];
     this.gameEndScreen = document.getElementById("game-end");
     this.player = new Player(
+      this,
       this.gameScreen,
-      500,
-      180,
-      130,
-      120,
+      800,
+      300,
+      92,
+      92,
       "./images/player-left.png"
     );
-    this.height = 1080;
+    this.height = 1000;
     this.width = 1820;
+    this.startposition = { top: 300, left: 800 };
     this.unhealthyItems = [];
     this.healthyItems = [];
     this.humans = [];
-    this.maxHumans = 10;
+    this.maxHumans = 30;
     this.score = 0;
     this.lives = 3;
     this.gameIsOver = false;
     this.gameIntervalId;
     this.gameLoopFrequency = Math.round(1000 / 60); // about 60frames per second screen refresh
+  }
+
+  closedIn() {
+    console.log("closed in by the people");
+    this.lives -= 2;
+    this.player.left = this.startposition.left;
+    this.player.top = this.startposition.top;
+    this.player.updatePosition();
+
+    let lives = document.getElementById("lives");
+    lives.innerHTML = `${this.lives}`;
   }
 
   start() {
@@ -59,10 +72,12 @@ class Game {
       // check for collision
       if (this.player.didCollide(unhealthy)) {
         // remove the obstacle from the array
-        console.log("collision with unhealthy item");
+        console.log(`collision with ${unhealthy.type}`);
         const index = this.unhealthyItems.indexOf(unhealthy);
         this.unhealthyItems.splice(index, 1);
         unhealthy.element.remove();
+
+        unhealthy.applyEffect(this.player);
 
         this.lives--;
         console.log(`lives: ${this.lives}`);
@@ -79,8 +94,6 @@ class Game {
     });
 
     this.healthyItems.map((healthy) => {
-      healthy.move();
-
       if (this.player.didCollide(healthy)) {
         console.log("collision with healthy item");
         const index = this.healthyItems.indexOf(healthy);
@@ -110,10 +123,16 @@ class Game {
     // create obstacles & visitors
     if (Math.random() > 0.99 && this.unhealthyItems.length < 1) {
       console.log("new obstacle");
-      this.unhealthyItems.push(new Unhealthy(this.gameScreen));
+
+      const unhealthyTypes = [Beer, Mushroom, Pill];
+
+      const randomUnhealthy =
+        unhealthyTypes[Math.floor(Math.random() * unhealthyTypes.length)];
+
+      this.unhealthyItems.push(new randomUnhealthy(this.gameScreen));
     }
 
-    if (Math.random() > 0.99 && this.lives < 3) {
+    if (Math.random() > 0.999 && this.lives < 3) {
       console.log("new healthy item");
       this.healthyItems.push(new Healthy(this.gameScreen));
     }
