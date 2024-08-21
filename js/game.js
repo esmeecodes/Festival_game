@@ -88,7 +88,7 @@ class Game {
         const index = this.unhealthyItems.indexOf(unhealthy);
         this.unhealthyItems.splice(index, 1);
         unhealthy.element.remove();
-        this.score++;
+        this.score += 100;
         let score = document.getElementById("score");
         score.innerHTML = `${this.score}`;
       }
@@ -101,6 +101,7 @@ class Game {
         this.healthyItems.splice(index, 1);
         healthy.element.remove();
         this.lives++;
+        this.score += 50;
         this.player.resetEffects();
         let lives = document.getElementById("lives");
         lives.innerHTML = `${this.lives}`;
@@ -130,7 +131,7 @@ class Game {
     }
 
     // create obstacles & visitors
-    if (Math.random() > 0.99 && this.unhealthyItems.length < 1) {
+    if (Math.random() > 0.95 && this.unhealthyItems.length < 1) {
       // console.log("new obstacle");
 
       const unhealthyTypes = [Beer, Mushroom, Pill];
@@ -151,7 +152,12 @@ class Game {
       this.placeHumanRandomly(50, 92);
     }
 
-    if (this.friends.length < 1 && this.score == 0 && Math.random() > 0.9) {
+    if (
+      this.friends.length < 1 &&
+      this.score == 0 &&
+      Math.random() > 0.995 &&
+      this.score > 1000
+    ) {
       this.friends.push(new Friend(this.gameScreen));
       console.log("Friend is in sight!");
     }

@@ -4,7 +4,7 @@ class Pill extends Unhealthy {
   }
 
   move() {
-    this.left += 1;
+    this.left += 1.5;
     this.updatePosition();
   }
 

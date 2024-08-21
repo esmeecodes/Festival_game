@@ -24,7 +24,7 @@ class Human extends Component {
     );
   }
   move() {
-    this.left += 4;
+    this.left += 2;
     // console.log(`Moving unhealthy to right: ${this.left}`);
     this.updatePosition();
   }
