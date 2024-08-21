@@ -9,7 +9,7 @@ class Human extends Component {
 
     this.game = game;
 
-    console.log("Human aangemaakt", this);
+    // console.log("Human aangemaakt", this);
   }
 
   // Controleren of deze Human overlapt met andere Humans in de game

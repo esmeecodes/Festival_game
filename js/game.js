@@ -20,6 +20,7 @@ class Game {
     this.healthyItems = [];
     this.humans = [];
     this.maxHumans = 30;
+    this.friends = [];
     this.score = 0;
     this.lives = 3;
     this.gameIsOver = false;
@@ -116,13 +117,20 @@ class Game {
       }
     });
 
+    this.friends.map((friend) => {
+      if (this.player.didCollide(friend)) {
+        console.log("found friend!");
+        this.endGame("found");
+      }
+    });
+
     if (this.lives === 0) {
-      this.endGame();
+      this.endGame("lost");
     }
 
     // create obstacles & visitors
     if (Math.random() > 0.99 && this.unhealthyItems.length < 1) {
-      console.log("new obstacle");
+      // console.log("new obstacle");
 
       const unhealthyTypes = [Beer, Mushroom, Pill];
 
@@ -133,13 +141,18 @@ class Game {
     }
 
     if (Math.random() > 0.999 && this.lives < 3) {
-      console.log("new healthy item");
+      // console.log("new healthy item");
       this.healthyItems.push(new Healthy(this.gameScreen));
     }
 
     if (this.humans.length < this.maxHumans && Math.random() > 0.99) {
       const humanTypes = ["h1", "h2", "h3", "h4", "h5", "h6", "h7"];
       this.placeHumanRandomly(50, 92);
+    }
+
+    if (this.friends.length < 1 && this.score == 0 && Math.random() > 0.9) {
+      this.friends.push(new Friend(this.gameScreen));
+      console.log("Friend is in sight!");
     }
   }
 
@@ -159,13 +172,22 @@ class Game {
     this.addHuman(human);
   }
 
-  endGame() {
+  endGame(reason) {
     this.player.element.remove();
     this.unhealthyItems.map((unhealthy) => {
       unhealthy.element.remove();
     });
     this.gameIsOver = true;
     this.gameScreen.style.display = "none";
-    this.gameEndScreen.style.display = "block";
+
+    const endGamePic = document.getElementById("end-image");
+
+    if (reason === "lost") {
+      endGamePic.src = "./images/game-over.png";
+    } else if (reason === "found") {
+      endGamePic.src = "./images/youwon.png";
+    }
+
+    this.gameEndScreen.style.display = "flex";
   }
 }

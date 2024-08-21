@@ -52,6 +52,10 @@ h1 {
 
 #game-end {
   display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
 .logo-img {
