@@ -13,7 +13,7 @@ class Game {
       92,
       "./images/player-left.png"
     );
-    this.height = 911;
+    this.height = 788;
     this.width = 1400;
     this.startposition = { top: 300, left: 800 };
     this.unhealthyItems = [];

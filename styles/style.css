@@ -51,7 +51,7 @@ h3 {
   position: relative;
   z-index: 1;
   background-image: url(../images/back.png);
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
 }
 
