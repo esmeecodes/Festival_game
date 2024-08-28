@@ -12,14 +12,19 @@ h1 {
   text-align: center;
 }
 
+h3 {
+  margin-bottom: 5px;
+}
+
 #game-intro {
-  padding: 20px 20px;
+  /* padding: 20px 20px 0 20px; */
   font-size: 18px;
   font-family: "Roboto", sans-serif;
   max-width: 600px;
   line-height: 1.5;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   text-align: center;
 }
@@ -64,7 +69,6 @@ h1 {
 
 .arrows-img {
   width: 200px;
-  margin: 20px;
 }
 
 #start-button {
@@ -80,6 +84,7 @@ h1 {
 
 #stats-title {
   max-width: 200px;
+  margin: 0 0 15px 0;
 }
 
 .stats {
@@ -98,19 +103,18 @@ h1 {
 
 .stats-text {
   display: flex;
-  justify-content: center;
   align-items: center;
-  background-color: white;
+  line-height: 1em;
+  font-weight: bold;
+  /* background-color: red; */
 }
 
 #score,
 #lives {
+  margin-left: 20px;
   font-weight: bold;
   font-size: 30px;
-}
-
-#essentials {
-  font-weight: bold;
+  color: #ff00c7;
 }
 
 #game-title {
@@ -120,7 +124,7 @@ h1 {
 #introduction-title {
   font-weight: bold;
   font-size: 24px;
-  margin: 20px 0 10px 0;
+  margin: 20px 0 0 0;
   display: block;
 }
 
@@ -128,4 +132,16 @@ h1 {
   font-size: 24px;
   font-weight: bold;
   text-align: center;
+}
+
+ul li {
+  margin: 0;
+  text-align: left;
+  padding-left: 10px;
+}
+
+li::marker {
+  content: "[" counter(list-item) "]";
+  color: #ff00c7;
+  font-weight: bold;
 }

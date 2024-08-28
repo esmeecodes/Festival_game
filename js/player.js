@@ -12,17 +12,17 @@ class Player extends Component {
   move() {
     const negativeEffect =
       this.isDrunk && this.isTripping
-        ? -0.25
+        ? -0.3
         : this.isDrunk && this.isHigh
         ? -4
         : this.isDrunk
         ? -0.5
         : this.isTripping
-        ? 0.25
+        ? 0.3
         : this.isTripping && this.isHigh
         ? 0.5
         : this.isHigh
-        ? 12
+        ? 13
         : 1;
 
     this.left += this.directionX * negativeEffect;

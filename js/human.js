@@ -23,9 +23,11 @@ class Human extends Component {
         this.top + this.height > other.top
     );
   }
+
   move() {
     this.left += 2;
-    // console.log(`Moving unhealthy to right: ${this.left}`);
+
     this.updatePosition();
+    console.log(`Moving human to right: ${this.left}`);
   }
 }

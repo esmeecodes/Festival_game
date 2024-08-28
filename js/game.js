@@ -31,17 +31,6 @@ class Game {
     this.gameLoopFrequency = Math.round(1000 / 60); // about 60frames per second screen refresh
   }
 
-  closedIn() {
-    console.log("closed in by the people");
-    this.lives -= 2;
-    this.player.left = this.startposition.left;
-    this.player.top = this.startposition.top;
-    this.player.updatePosition();
-
-    let lives = document.getElementById("lives");
-    lives.innerHTML = `${this.lives}`;
-  }
-
   start() {
     // set the height + width of the game screen
     this.gameScreen.style.height = `${this.height}px`;
@@ -81,7 +70,7 @@ class Game {
         unhealthy.element.remove();
 
         unhealthy.applyEffect(this.player);
-
+        this.score += 50;
         this.lives--;
         console.log(`lives: ${this.lives}`);
         let lives = document.getElementById("lives");
@@ -138,7 +127,7 @@ class Game {
     }
 
     // create obstacles & visitors
-    if (Math.random() > 0.95 && this.unhealthyItems.length < 1) {
+    if (Math.random() > 0.99 && this.unhealthyItems.length < 3) {
       // console.log("new obstacle");
 
       const unhealthyTypes = [Beer, Mushroom, Pill];
@@ -149,7 +138,7 @@ class Game {
       this.unhealthyItems.push(new randomUnhealthy(this.gameScreen));
     }
 
-    if (Math.random() > 0.999 && this.lives < 4) {
+    if (Math.random() > 0.999 && this.lives < 3) {
       // console.log("new healthy item");
       let newHealthyItem = new Healthy(this.gameScreen);
       this.healthyItems.push(newHealthyItem);
@@ -173,10 +162,10 @@ class Game {
       this.placeHumanRandomly(50, 92);
     }
 
-    if (this.infofriends.length < 1 && Math.random() > 0.995) {
-      this.infofriends.push(new Infofriend(this.gameScreen));
-      console.log("Infofriend is in");
-    }
+    // if (this.infofriends.length < 1 && Math.random() > 0.995) {
+    //   this.infofriends.push(new Infofriend(this.gameScreen));
+    //   console.log("Infofriend is in");
+    // }
 
     if (this.friends.length < 1 && Math.random() > 0.9 && this.score > 1000) {
       this.friends.push(new Friend(this.gameScreen));
@@ -203,7 +192,16 @@ class Game {
     // If there is no overlap, add the human to the game
     this.addHuman(human);
   }
+  closedIn() {
+    console.log("closed in by the people");
+    this.lives -= 2;
+    this.player.left = this.startposition.left;
+    this.player.top = this.startposition.top;
+    this.player.updatePosition();
 
+    let lives = document.getElementById("lives");
+    lives.innerHTML = `${this.lives}`;
+  }
   endGame(reason) {
     this.player.element.remove();
     this.unhealthyItems.map((unhealthy) => {
