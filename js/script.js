@@ -3,7 +3,7 @@ window.onload = function () {
   const restartButton = document.getElementById("restart-button");
   let game; // we need to declare this variable here so we can access it later
   const audio = new Audio("src/Kaufmann.mp3");
-  audio.play();
+  // audio.play();
 
   startButton.addEventListener("click", function () {
     startGame();
@@ -55,7 +55,6 @@ window.onload = function () {
     return "#" + Math.floor(Math.random() * 16777215).toString(16);
   }
 
-  // Changes the color of the background using STYLE
   function changeBackgroundColor() {
     var colorBg = document.getElementById("color-overlay");
     colorBg.style.background = generateRandomColor();
@@ -65,6 +64,5 @@ window.onload = function () {
     changeBackgroundColor();
   }
 
-  // Run this function every 300ms
   setInterval(changeBackground, 100);
 };

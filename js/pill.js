@@ -4,12 +4,12 @@ class Pill extends Unhealthy {
   }
 
   move() {
-    this.left += 1.5;
+    this.left += 3;
     this.updatePosition();
   }
 
   applyEffect(player) {
     player.isHigh = true;
-    console.log("collision with pill, player is high");
+    console.log("collision with pill, player is high", player);
   }
 }

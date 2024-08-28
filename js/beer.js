@@ -4,12 +4,12 @@ class Beer extends Unhealthy {
   }
 
   move() {
-    this.left += 1.5;
+    this.left += 3;
     this.updatePosition();
   }
 
   applyEffect(player) {
-    console.log("collision with beer, player is drunk");
+    console.log("collision with beer, player is drunk", player);
     player.isDrunk = true;
   }
 }

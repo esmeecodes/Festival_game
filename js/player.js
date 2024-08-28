@@ -10,13 +10,20 @@ class Player extends Component {
   }
 
   move() {
-    const negativeEffect = this.isDrunk
-      ? -1
-      : this.isTripping
-      ? 0.5
-      : this.isHigh
-      ? 4
-      : 1;
+    const negativeEffect =
+      this.isDrunk && this.isTripping
+        ? -0.25
+        : this.isDrunk && this.isHigh
+        ? -4
+        : this.isDrunk
+        ? -0.5
+        : this.isTripping
+        ? 0.25
+        : this.isTripping && this.isHigh
+        ? 0.5
+        : this.isHigh
+        ? 12
+        : 1;
 
     this.left += this.directionX * negativeEffect;
     this.top += this.directionY * negativeEffect;
@@ -45,15 +52,18 @@ class Player extends Component {
   }
 
   resetEffects() {
+    console.log("resetting effects being called", this);
     this.isDrunk = false;
-    this.isTripping = false;
     this.isHigh = false;
-    this.flipSprite(false);
+    this.isTripping = false;
+    this.trippingPlayer(false);
   }
 
   trippingPlayer() {
-    if ((this.isTripping = true)) {
+    if (this.isTripping === true) {
       this.element.style.transform = "scale(0.5)";
+    } else {
+      this.element.style.transform = "scale(1)";
     }
   }
 

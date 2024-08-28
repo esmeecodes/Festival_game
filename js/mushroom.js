@@ -4,12 +4,12 @@ class Mushroom extends Unhealthy {
   }
 
   move() {
-    this.left += 1.5;
+    this.left += 3;
     this.updatePosition();
   }
 
   applyEffect(player) {
-    console.log("collision with mushroom, player is tripping");
+    console.log("player is tripping", player);
     player.isTripping = true;
     player.trippingPlayer();
   }
