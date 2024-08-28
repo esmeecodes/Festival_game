@@ -28,6 +28,6 @@ class Human extends Component {
     this.left += 2;
 
     this.updatePosition();
-    console.log(`Moving human to right: ${this.left}`);
+    // console.log(`Moving human to right: ${this.left}`);
   }
 }

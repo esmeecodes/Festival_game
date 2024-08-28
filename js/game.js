@@ -167,9 +167,19 @@ class Game {
     //   console.log("Infofriend is in");
     // }
 
-    if (this.friends.length < 1 && Math.random() > 0.9) {
+    if (this.friends.length < 1 && Math.random() > 0.9 && this.score >= 2500) {
       this.friends.push(new Friend(this.gameScreen));
       console.log("Friend is in sight!");
+
+      if (this.friends.length === 1) {
+        setTimeout(() => {
+          if (this.friends.length === 1) {
+            const removedFriend = this.friends.shift();
+            removedFriend.element.remove();
+            console.log("friend moved again");
+          }
+        }, 10000);
+      }
     }
 
     // if (this.decorations < 3 && Math.random() > 0.9) {
