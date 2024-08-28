@@ -145,3 +145,8 @@ li::marker {
   color: #ff00c7;
   font-weight: bold;
 }
+
+#friend {
+  max-width: 200px;
+  margin-top: 50px;
+}

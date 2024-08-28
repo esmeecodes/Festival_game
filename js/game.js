@@ -167,7 +167,7 @@ class Game {
     //   console.log("Infofriend is in");
     // }
 
-    if (this.friends.length < 1 && Math.random() > 0.9 && this.score > 1000) {
+    if (this.friends.length < 1 && Math.random() > 0.9) {
       this.friends.push(new Friend(this.gameScreen));
       console.log("Friend is in sight!");
     }
