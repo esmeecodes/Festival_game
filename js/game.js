@@ -14,7 +14,7 @@ class Game {
       "./images/player-left.png"
     );
     this.height = 911;
-    this.width = 1620;
+    this.width = 1400;
     this.startposition = { top: 300, left: 800 };
     this.unhealthyItems = [];
     this.healthyItems = [];
